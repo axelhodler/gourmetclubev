@@ -40,8 +40,6 @@ function initialize() {
       geocoder.geocode( { 'address': places.address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
-            map.setCenter(results[0].geometry.location);
-
             var marker = new MarkerWithLabel({
               position: results[0].geometry.location,
               map: map,
@@ -49,7 +47,6 @@ function initialize() {
               labelContent: places.name,
               labelClass: "labels"
             });
-
           } else {
             alert("No results found");
           }
