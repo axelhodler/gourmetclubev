@@ -1,0 +1,19 @@
+{
+  "name": "gourmetclub",
+  "version": "0.0.0",
+  "authors": [
+    "xorrr <derxor@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.18",
+    "requirejs-plugins": "~1.0.3"
+  }
+}
