@@ -1,3 +1,5 @@
+require(['googlemaps!'], function(gmaps) {
+
 var places = [
   {"name": "87", "address" : "König-Karl-Straße 87, Stuttgart"},
   {"name": "Gigis Burgerbar", "address" : "Theodor-Heuss-Strasse 34, 70174 Stuttgart"},
@@ -12,22 +14,22 @@ var places = [
 var geocoder;
 var map;
 var address ="Stuttgart, Germany";
-function initialize() {
-  geocoder = new google.maps.Geocoder();
-  var latlng = new google.maps.LatLng(-34.397, 150.644);
+
+  geocoder = new gmaps.Geocoder();
+  var latlng = new gmaps.LatLng(-34.397, 150.644);
   var myOptions = {
     zoom: 13,
     center: latlng,
     mapTypeControl: true,
-    mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
+    mapTypeControlOptions: {style: gmaps.MapTypeControlStyle.DROPDOWN_MENU},
     navigationControl: true,
-    mapTypeId: google.maps.MapTypeId.HYBRID
+    mapTypeId: gmaps.MapTypeId.HYBRID
   };
-  map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+  map = new gmaps.Map(document.getElementById("map_canvas"), myOptions);
   if (geocoder) {
     geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+      if (status == gmaps.GeocoderStatus.OK) {
+        if (status != gmaps.GeocoderStatus.ZERO_RESULTS) {
           map.setCenter(results[0].geometry.location);
         } else {
           alert("No results found");
@@ -38,8 +40,8 @@ function initialize() {
     });
     places.forEach(function(places) {
       geocoder.geocode( { 'address': places.address}, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-          if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+        if (status == gmaps.GeocoderStatus.OK) {
+          if (status != gmaps.GeocoderStatus.ZERO_RESULTS) {
             var marker = new MarkerWithLabel({
               position: results[0].geometry.location,
               map: map,
@@ -56,4 +58,5 @@ function initialize() {
       });
     });
   }
-}
+
+});
